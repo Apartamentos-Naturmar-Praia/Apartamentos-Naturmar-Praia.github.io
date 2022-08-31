@@ -222,6 +222,9 @@ noscript {
 		display: flex;
 		flex-flow: column-reverse nowrap;
 	}
+	#price-calc {
+		align-self: stretch;
+	}
 }
 @media (hover: hover) {
 	.slide-button:hover {
