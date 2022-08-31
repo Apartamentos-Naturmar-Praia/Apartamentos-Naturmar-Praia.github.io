@@ -21,6 +21,10 @@ main {
 	width: 100%;
 	order: 1;
 }
+#intro>p {
+	text-align: justify;
+	text-justify: inter-word;
+}
 #intro-fp {
 	margin-top: 0;
 }
