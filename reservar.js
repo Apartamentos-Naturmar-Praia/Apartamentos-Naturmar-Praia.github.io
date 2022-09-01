@@ -1,9 +1,9 @@
 const isEN = document.URL.includes("/en/");
 const peoplePerType = {
-  "T0": 2, "T0+1": 3, "T1": 4, "T1s": 4, "T1+1": 6, "T2": 6
+  "T0": 2, "T0+1": 3, "T1": 4, "T1S": 4, "T1+1": 6, "T2": 6
 };
 const maxNumberOfType = {
-  "T0": 1, "T0+1": 2, "T1": 3, "T1s": 1, "T1+1": 2, "T2": 1
+  "T0": 1, "T0+1": 2, "T1": 3, "T1S": 1, "T1+1": 2, "T2": 1
 };
 const resultTextH = document.getElementById("result-text");
 const formPeopleH = document.getElementById("form-people");
@@ -55,7 +55,7 @@ const formNumberChanged = () => {
 };
 const formTypeChanged = () => {
   const typeCounts = {
-    "T0": 0, "T0+1": 0, "T1": 0, "T1s": 0, "T1+1": 0, "T2": 0
+    "T0": 0, "T0+1": 0, "T1": 0, "T1S": 0, "T1+1": 0, "T2": 0
   };
   for(const item of formTypesH.children) {
     if(!item.hidden) {

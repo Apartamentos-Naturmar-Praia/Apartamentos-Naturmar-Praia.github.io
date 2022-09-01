@@ -29,7 +29,7 @@ noscript {
 	padding: 0.2rem;
 }
 #type-select {
-	font-size: 1.05em;
+	font-size: 1rem;
 }
 #type-select, #type-select-label {
 	font-weight: bold;
@@ -193,7 +193,7 @@ noscript {
 }
 #check-in-date-picker, #check-out-date-picker {
 	margin-left: auto;
-	font-size: 1.2em;
+	font-size: 1rem;
 }
 #price-calc-result {
 	margin: 1rem 0 0 0;
