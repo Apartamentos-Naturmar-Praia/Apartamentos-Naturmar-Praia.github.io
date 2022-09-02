@@ -44,6 +44,7 @@
 					Use the form below to help you generate the inquiry.
 				</p>
 			</section>
+
 			<form action="javascript:genMessage();" autocomplete="on">
 				<label for="form-name">Name</label>
 				<input id="form-name" class="boxed-text" type="text" required autocomplete="name">
@@ -54,7 +55,7 @@
 				<label for="form-phone">Telephone</label>
 				<input id="form-phone" class="boxed-text" type="tel" required autocomplete="tel">
 
-				<label for="form-number">Number of apartments</label>
+				<label for="form-number">No. of apartments</label>
 				<select id="form-number" class="boxed-text" onchange="formNumberChanged();">
 					<option>1</option>
 					<option>2</option>
@@ -95,7 +96,7 @@
 					</li>
 				</ul>
 
-				<label for="form-people">Number of people</label>
+				<label for="form-people">No. of people</label>
 				<select id="form-people" class="boxed-text">
 					<option>1</option>
 					<option>2</option>
@@ -125,12 +126,15 @@
 				<input id="form-check-out" class="boxed-text" type="date" onchange="changeFormDate(false);" required
 					autocomplete="off">
 
-				<label for="form-info">Additional information (optional)</label>
+				<label for="form-info">Additional info. (optional)</label>
 				<textarea id="form-info" class="boxed-text"></textarea>
 
-				<button type="submit" class="boxed-text">Generate Inquiry</button>
-				<button type="reset" class="boxed-text" onclick="resetFormTypes();">Reset</button>
+				<div>
+					<button type="submit" class="boxed-text">Generate Inquiry</button>
+					<button type="reset" class="boxed-text" onclick="resetFormTypes();">Reset</button>
+				</div>
 			</form>
+
 			<section id="result" hidden>
 				<div>
 					<h2>Inquiry to send:</h2>

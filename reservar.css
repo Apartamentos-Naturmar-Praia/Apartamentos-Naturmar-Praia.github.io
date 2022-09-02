@@ -3,61 +3,82 @@ body {
 	font-family: var(--font-family);
 	background-color: var(--bars-color);
 }
+
 main {
-  padding: 1rem;
+	padding: 1rem;
 	background-color: var(--cards-background-color);
 }
+
 noscript {
 	display: block;
 	margin: auto;
 	background-color: white;
 	text-align: center;
 }
+
 #main-content {
-  margin: auto;
-  max-width: var(--max-layout-width);
+	margin: auto;
+	max-width: var(--max-layout-width);
 	display: grid;
 	align-items: start;
 	gap: 1rem;
 }
+
 .main-content-without-result {
-	grid-template-areas: "intro" "form";
+	grid-template-areas: "intro""form";
 }
+
 .main-content-with-result {
-	grid-template-areas: "intro" "form" "result";
+	grid-template-areas: "intro""form""result";
 }
+
 #introduction {
 	grid-area: intro;
 }
-#introduction, #result {
+
+#introduction,
+#result {
 	padding: 1rem;
 	background-color: var(--cards-color);
 }
-#introduction>h2, form>h2, #result h2 {
-  margin: 0;
-  font-size: 1.2rem;
+
+#introduction>h2,
+form>h2,
+#result h2 {
+	margin: 0;
+	font-size: 1.2rem;
 }
+
 #introduction>p {
 	margin: 1rem 0 0 0;
 }
+
 form {
 	padding: 1rem;
 	background-color: var(--cards-color);
 	grid-area: form;
-	justify-self: center;
+	justify-self: stretch;
+	display: grid;
+	grid-template-columns: auto;
+	justify-content: start;
+	justify-items: start;
 }
+
 .boxed-text {
 	font-size: 1rem;
 }
+
+form>label {
+	margin-top: 0.2rem;
+}
+
 form>hr {
 	padding: 0;
 	border: 0;
 	border-bottom: 0.1rem solid black;
-  border-color: black;
+	border-color: black;
 }
-form>label, form>textarea {
-  display: block;
-}
+
 #form-types {
 	list-style: none;
 	margin: 0;
@@ -65,21 +86,27 @@ form>label, form>textarea {
 	display: flex;
 	flex-flow: row wrap;
 }
+
 #form-info {
-	width: 100%;
+	justify-self: stretch;
 	resize: vertical;
 }
+
 #result {
 	grid-area: result;
 }
+
 #result>div {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-between;
 }
-#result h2, #result button {
+
+#result h2,
+#result button {
 	display: inline-block;
 }
+
 #result button {
 	position: relative;
 	margin-left: auto;
@@ -87,9 +114,11 @@ form>label, form>textarea {
 	flex-flow: row nowrap;
 	align-items: center;
 }
+
 #result button>img {
 	width: 2rem;
 }
+
 #result-copy-button-note {
 	display: none;
 	position: absolute;
@@ -100,24 +129,37 @@ form>label, form>textarea {
 	color: white;
 	background-color: #222222;
 }
+
 #result-copy-button-note::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -0.4rem;
-  border-width: 0.4rem;
-  border-style: solid;
-  border-color: #222222 transparent transparent transparent;
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -0.4rem;
+	border-width: 0.4rem;
+	border-style: solid;
+	border-color: #222222 transparent transparent transparent;
 }
+
 #result-text {
 	width: 100%;
 	margin: 1rem 0 0 0;
 	resize: vertical;
 }
-@media screen and (min-width: 40rem) {
+
+@media screen and (min-width: 32rem) {
+	form {
+		grid-template-columns: auto auto;
+		gap: 0.2rem 1rem;
+	}
+	form>label {
+		margin-top: 0;
+	}
+}
+
+@media screen and (min-width: 52rem) {
 	.main-content-with-result {
 		grid-template-columns: auto 1fr;
-		grid-template-areas: "intro intro" "form result";
+		grid-template-areas: "intro intro""form result";
 	}
 }
