@@ -92,6 +92,10 @@ form>hr {
 	resize: vertical;
 }
 
+form>div {
+	margin-top: 0.2rem;
+}
+
 #result {
 	grid-area: result;
 }
@@ -147,11 +151,12 @@ form>hr {
 	resize: vertical;
 }
 
-@media screen and (min-width: 32rem) {
+@media screen and (min-width: 33rem) {
 	form {
 		grid-template-columns: auto auto;
 		gap: 0.2rem 1rem;
 	}
+
 	form>label {
 		margin-top: 0;
 	}
