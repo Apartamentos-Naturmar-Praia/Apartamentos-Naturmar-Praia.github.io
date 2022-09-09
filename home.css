@@ -25,6 +25,13 @@ main {
 	text-align: justify;
 	text-justify: inter-word;
 }
+#intro>ul {
+	list-style-position: inside;
+	padding: 0;
+}
+#intro>ul>p {
+	margin: 0;
+}
 #intro-fp {
 	margin-top: 0;
 }
