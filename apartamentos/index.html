@@ -40,8 +40,9 @@
 						<select id="type-select" onchange="selectionChange();">
 							<option id="T0">T0 (2 Pessoas)</option>
 							<option id="T0+1">T0+1 (3 Pessoas)</option>
+							<option id="T0+2">T0+2 (4 Pessoas)</option>
 							<option id="T1">T1 (4 Pessoas)</option>
-							<option id="T1s">T1S (4 Pessoas)</option>
+							<option id="T1S">T1S (4 Pessoas)</option>
 							<option id="T1+1">T1+1 (6 Pessoas)</option>
 							<option id="T2">T2 (6 Pessoas)</option>
 						</select>
@@ -80,36 +81,36 @@
 				<div id="table-calc-container">
 					<div id="prices-table-container" class="card">
 						<table id="prices-table">
-							<caption>Preçário (2022)</caption>
+							<caption>Preçário (2023)</caption>
 							<tbody>
 								<tr>
 									<th>Data</th><th>Preço/noite</th>
 								</tr><tr>
-									<td>jan 03 - mar 31</td><td>35€</td>
+									<td>jan 02 - fev 28</td><td>40€</td>
 								</tr><tr>
-									<td>abr 01 - mai 31</td><td>40€</td>
+									<td>mar 01 - abr 30</td><td>45€</td>
 								</tr><tr>
-									<td>jun 01 - jun 30</td><td>55€</td>
+									<td>mai 01 - mai 31</td><td>50€</td>
 								</tr><tr>
-									<td>jul 01 - jul 15</td><td>70€</td>
+									<td>jun 01 - jun 15</td><td>60€</td>
 								</tr><tr>
-									<td>jul 16 - jul 31</td><td>85€</td>
+									<td>jun 16 - jun 30</td><td>70€</td>
 								</tr><tr>
-									<td>ago 01 - ago 26</td><td>100€</td>
+									<td>jul 01 - jul 15</td><td>80€</td>
 								</tr><tr>
-									<td>ago 27 - set 02</td><td>85€</td>
+									<td>jul 16 - jul 31</td><td>95€</td>
 								</tr><tr>
-									<td>set 03 - set 09</td><td>70€</td>
+									<td>ago 01 - ago 25</td><td>105€</td>
 								</tr><tr>
-									<td>set 10 - set 16</td><td>60€</td>
+									<td>ago 26 - set 01</td><td>95€</td>
 								</tr><tr>
-									<td>set 17 - set 30</td><td>55€</td>
+									<td>set 02 - set 15</td><td>80€</td>
 								</tr><tr>
-									<td>out 01 - out 31</td><td>40€</td>
+									<td>set 16 - set 30</td><td>60€</td>
 								</tr><tr>
-									<td>nov 01 - dez 29</td><td>35€</td>
+									<td>out 01 - out 31</td><td>45€</td>
 								</tr><tr>
-									<td>dez 30 - jan 01</td><td>110€</td>
+									<td>nov 01 - dez 28</td><td>40€</td>
 								</tr>
 							</tbody>
 						</table>
@@ -118,11 +119,11 @@
 						<h2>Cálculo de Preço:</h2>
 						<div>
 							<label for="check-in-date-picker">Data de check-in</label>
-							<input type="date" id="check-in-date-picker" min="2022-01-03" max="2023-01-01" onchange="calcDateRangePrice();">
+							<input type="date" id="check-in-date-picker" min="2023-01-02" max="2023-12-28" onchange="calcDateRangePrice();">
 						</div>
 						<div>
 							<label for="check-out-date-picker">Data de check-out</label>
-							<input type="date" id="check-out-date-picker" min="2022-01-03" max="2023-01-01" onchange="calcDateRangePrice();">
+							<input type="date" id="check-out-date-picker" min="2023-01-02" max="2023-12-28" onchange="calcDateRangePrice();">
 						</div>
 						<p id="price-calc-result">Preço por 0 noite(s): 0€</p>
 					</section>
