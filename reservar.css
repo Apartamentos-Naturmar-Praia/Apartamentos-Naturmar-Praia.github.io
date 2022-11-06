@@ -25,18 +25,23 @@ noscript {
 }
 
 .main-content-without-result {
-	grid-template-areas: "intro""form";
+	grid-template-areas: "intro""form""alternative";
 }
 
 .main-content-with-result {
-	grid-template-areas: "intro""form""result";
+	grid-template-areas: "intro""form""result""alternative";
 }
 
 #introduction {
 	grid-area: intro;
 }
 
+#alternative {
+	grid-area: alternative;
+}
+
 #introduction,
+#alternative,
 #result {
 	padding: 1rem;
 	background-color: var(--cards-color);
@@ -49,7 +54,8 @@ form>h2,
 	font-size: 1.2rem;
 }
 
-#introduction>p {
+#introduction>p,
+#alternative>p {
 	margin: 1rem 0 0 0;
 }
 
@@ -163,8 +169,13 @@ form>div {
 }
 
 @media screen and (min-width: 53rem) {
+	.main-content-without-result {
+		grid-template-columns: auto 1fr;
+		grid-template-areas: "intro intro""form alternative";
+	}
+
 	.main-content-with-result {
 		grid-template-columns: auto 1fr;
-		grid-template-areas: "intro intro""form result";
+		grid-template-areas: "intro intro""form result""form alternative";
 	}
 }
