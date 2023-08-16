@@ -1,0 +1,181 @@
+body {
+	margin: 0;
+	font-family: var(--font-family);
+	background-color: var(--bars-color);
+}
+
+main {
+	padding: 1rem;
+	background-color: var(--cards-background-color);
+}
+
+noscript {
+	display: block;
+	margin: auto;
+	background-color: white;
+	text-align: center;
+}
+
+#main-content {
+	margin: auto;
+	max-width: var(--max-layout-width);
+	display: grid;
+	align-items: start;
+	gap: 1rem;
+}
+
+.main-content-without-result {
+	grid-template-areas: "intro""form""alternative";
+}
+
+.main-content-with-result {
+	grid-template-areas: "intro""form""result""alternative";
+}
+
+#introduction {
+	grid-area: intro;
+}
+
+#alternative {
+	grid-area: alternative;
+}
+
+#introduction,
+#alternative,
+#result {
+	padding: 1rem;
+	background-color: var(--cards-color);
+}
+
+#introduction>h2,
+form>h2,
+#result h2 {
+	margin: 0;
+	font-size: 1.2rem;
+}
+
+#introduction>p,
+#alternative>p {
+	margin: 1rem 0 0 0;
+}
+
+form {
+	padding: 1rem;
+	background-color: var(--cards-color);
+	grid-area: form;
+	justify-self: stretch;
+	display: grid;
+	grid-template-columns: auto;
+	justify-content: start;
+	justify-items: start;
+}
+
+.boxed-text {
+	font-size: 1rem;
+}
+
+form>label {
+	margin-top: 0.2rem;
+}
+
+form>hr {
+	padding: 0;
+	border: 0;
+	border-bottom: 0.1rem solid black;
+	border-color: black;
+}
+
+#form-types {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-flow: row wrap;
+}
+
+#form-info {
+	justify-self: stretch;
+	resize: vertical;
+}
+
+form>div {
+	margin-top: 0.2rem;
+}
+
+#result {
+	grid-area: result;
+}
+
+#result>div {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+
+#result h2,
+#result button {
+	display: inline-block;
+}
+
+#result button {
+	position: relative;
+	margin-left: auto;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+}
+
+#result button>img {
+	width: 2rem;
+}
+
+#result-copy-button-note {
+	display: none;
+	position: absolute;
+	bottom: 100%;
+	z-index: 1;
+	padding: 0.5rem;
+	border-radius: 0.3rem;
+	color: white;
+	background-color: #222222;
+}
+
+#result-copy-button-note::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -0.4rem;
+	border-width: 0.4rem;
+	border-style: solid;
+	border-color: #222222 transparent transparent transparent;
+}
+
+#result-text {
+	width: 100%;
+	margin: 1rem 0 0 0;
+	resize: vertical;
+}
+
+@media screen and (min-width: 33rem) {
+	form {
+		grid-template-columns: auto auto;
+		gap: 0.2rem 1rem;
+	}
+
+	form>label {
+		margin-top: 0;
+	}
+}
+
+@media screen and (min-width: 53rem) {
+	.main-content-without-result {
+		grid-template-columns: auto 1fr;
+		grid-template-areas: "intro intro""form alternative";
+	}
+
+	.main-content-with-result {
+		grid-template-columns: auto 1fr;
+		grid-template-areas: "intro intro""form result""form alternative";
+	}
+}

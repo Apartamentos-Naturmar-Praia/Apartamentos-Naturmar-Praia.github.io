@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Apartamentos Naturmar Praia</title>
+	<link rel="icon" type="image/x-icon" href="/icons/beach.svg">
+	<link rel="stylesheet" type="text/css" href="/style/vars.css">
+	<link rel="stylesheet" type="text/css" href="/style/top-bar.css">
+	<link rel="stylesheet" type="text/css" href="/style/bottom-bar.css">
+	<link rel="stylesheet" type="text/css" href="/reservar.css">
+	<script src="/reservar.js" defer></script>
+</head>
+
+<body>
+	<noscript>Sem <i>javascript</i> ativo, os elementos desta página não funcionarão.</noscript>
+	<header id="top-bar">
+		<div id="top-bar-content">
+			<div id="logo">
+				<img src="/icons/beach.svg">
+				<h1>Apartamentos<br>Naturmar Praia</h1>
+			</div>
+			<a id="lang-switcher" href="/en">
+				<img src="/icons/united-kingdom-flag.svg">
+				<p lang="en">English</p>
+			</a>
+			<nav id="nav-bar">
+				<a href="/">INÍCIO</a>
+				<a href="/apartamentos">APARTAMENTOS</a>
+				<a href="/informacoes">INFORMAÇÕES</a>
+				<a>RESERVAR</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<div id="main-content" class="main-content-without-result">
+			<section id="introduction">
+				<h2>Como Reservar</h2>
+				<p>
+					Para reservar precisa de enviar um inquérito, por <i>e‑mail</i>, para
+					<a href="mailto:portugal_holidays@hotmail.com">portugal_holidays@hotmail.com</a>.
+					<br>Utilize o formulário abaixo para o ajudar a gerar o inquérito.
+					<br>(Caso o seu serviço de <i>Webmail</i> seja o Gmail, envie para
+					<a href="mailto:naturmar.holidays@gmail.com">naturmar.holidays@gmail.com</a> em vez).
+				</p>
+			</section>
+
+			<form action="javascript:genMessage();" autocomplete="on">
+				<label for="form-name">Nome</label>
+				<input id="form-name" class="boxed-text" type="text" required autocomplete="name">
+
+				<label for="form-surname">Apelido</label>
+				<input id="form-surname" class="boxed-text" type="text" required autocomplete="name">
+
+				<label for="form-phone">Telefone</label>
+				<input id="form-phone" class="boxed-text" type="tel" required autocomplete="tel">
+
+				<label for="form-number">N.º de apartamentos</label>
+				<select id="form-number" class="boxed-text" onchange="formNumberChanged();" autocomplete="off">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+				</select>
+
+				<label for="form-type1">Tipologia(s)</label>
+				<ul id="form-types">
+					<li>
+						<select class="boxed-text" onchange="formTypeChanged();" autocomplete="off">
+							<option>T0</option>
+							<option>T0+1</option>
+							<option>T0+2</option>
+							<option>T1</option>
+							<option>T1S</option>
+							<option>T1+1</option>
+							<option>T2</option>
+						</select>
+					</li>
+					<li hidden>
+						<select class="boxed-text" onchange="formTypeChanged();" disabled autocomplete="off">
+							<option>T0</option>
+							<option>T0+1</option>
+							<option>T0+2</option>
+							<option selected>T1</option>
+							<option>T1S</option>
+							<option>T1+1</option>
+							<option>T2</option>
+						</select>
+					</li>
+					<li hidden>
+						<select class="boxed-text" onchange="formTypeChanged();" disabled autocomplete="off">
+							<option>T0</option>
+							<option>T0+1</option>
+							<option>T0+2</option>
+							<option selected>T1</option>
+							<option>T1S</option>
+							<option>T1+1</option>
+							<option>T2</option>
+						</select>
+					</li>
+				</ul>
+
+				<label for="form-people">N.º de pessoas</label>
+				<select id="form-people" class="boxed-text" autocomplete="off">
+					<option>1</option>
+					<option>2</option>
+					<option disabled hidden>3</option>
+					<option disabled hidden>4</option>
+					<option disabled hidden>5</option>
+					<option disabled hidden>6</option>
+					<option disabled hidden>7</option>
+					<option disabled hidden>8</option>
+					<option disabled hidden>9</option>
+					<option disabled hidden>10</option>
+					<option disabled hidden>11</option>
+					<option disabled hidden>12</option>
+					<option disabled hidden>13</option>
+					<option disabled hidden>14</option>
+					<option disabled hidden>15</option>
+					<option disabled hidden>16</option>
+					<option disabled hidden>17</option>
+					<option disabled hidden>18</option>
+				</select>
+
+				<label for="form-check-in">Data de chegada</label>
+				<input id="form-check-in" class="boxed-text" type="date" onchange="changeFormDate(true);" required>
+
+				<label for="form-check-out">Data de saída</label>
+				<input id="form-check-out" class="boxed-text" type="date" onchange="changeFormDate(false);" required>
+
+				<label for="form-info">Info. adicionais (opcional)</label>
+				<textarea id="form-info" class="boxed-text" rows="1"></textarea>
+
+				<div>
+					<button type="submit" class="boxed-text">Gerar Inquérito</button>
+					<button type="reset" class="boxed-text" onclick="resetFormTypes();">Apagar</button>
+				</div>
+			</form>
+
+			<section id="result" hidden>
+				<div>
+					<h2>Inquérito a enviar:</h2>
+					<button onclick="copyMessage();">
+						Copiar
+						<img src="/icons/content-copy.svg">
+						<p id="result-copy-button-note">Copiado ✅</p>
+					</button>
+				</div>
+				<textarea id="result-text" rows="1" readonly></textarea>
+			</section>
+
+			<section id="alternative">
+				<img src="/icons/smartphone.svg">
+				<p>
+					Alternativamente, pode‑nos contactar, por telefone, ligando para o seguinte número:
+					<a href="tel:+351966040459">+351 966 040 459</a>
+				</p>
+			</section>
+		</div>
+	</main>
+
+	<footer id="bottom-bar">
+		<ul id="bottom-bar-content">
+			<li>
+				<h2>Contactos</h2>
+				<ul id="contacts-list">
+					<li>
+						<img class="contact-icon" src="/icons/alternate-email-white.svg">
+						<p class="contact-text">portugal<wbr>_holidays<wbr>@hotmail<wbr>.com</p>
+					</li>
+					<li>
+						<img class="contact-icon" src="/icons/alternate-email-white.svg">
+						<p class="contact-text">naturmar<wbr>.holidays<wbr>@gmail<wbr>.com</p>
+					</li>
+					<li>
+						<img class="contact-icon" src="/icons/local-phone-white.svg">
+						<p class="contact-text phone-text">+351 289 571 929</p>
+					</li>
+					<li>
+						<img class="contact-icon" src="/icons/smartphone-white.svg">
+						<p class="contact-text phone-text">+351 966 040 459</p>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<h2>Endereço</h2>
+				<dl id="location-list">
+					<dt>Rua:</dt>
+					<dd>Beco dos Lôpos</dd><br>
+					<dt>Localidade:</dt>
+					<dd>Olhos D'Água</dd><br>
+					<dt>Concelho:</dt>
+					<dd>Albufeira</dd><br>
+					<dt><strong>Código Postal</strong>:</dt>
+					<dd>8200‒642 ALBUFEIRA</dd><br><br>
+					<dt><strong>Coordenadas</strong>:</dt>
+					<dd><a target="_blank" href="https://goo.gl/maps/JXNwq3ai8Hgc2UHW8">37°05'31.6"N 8°11'28.7"W</a>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<h2>Menu Legal</h2>
+				<a href="/termos-condicoes-arrendamento">Termos e Condições de Arrendamento</a>
+			</li>
+		</ul>
+	</footer>
+</body>
+
+</html>

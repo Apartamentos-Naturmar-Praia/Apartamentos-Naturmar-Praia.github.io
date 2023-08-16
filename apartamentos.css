@@ -1,0 +1,241 @@
+body {
+	margin: 0;
+	background-color: var(--bars-color);
+	font-family: var(--font-family);
+}
+main {
+	background-color: var(--cards-background-color);
+}
+main>div {
+	max-width: var(--max-layout-width);
+	margin: auto;
+	display: grid;
+	grid-template-areas: "selection" "slideshow" "table-calculator";
+	gap: 1rem;
+	padding: 0.5rem;
+}
+.card {
+	background-color: var(--cards-color);
+}
+noscript {
+	display: block;
+	margin: auto;
+	background-color: white;
+	text-align: center;
+}
+#type-select-widget {
+	grid-area: selection;
+	justify-self: center;
+	padding: 0.2rem;
+}
+#type-select {
+	font-size: 1rem;
+}
+#type-select, #type-select-label {
+	font-weight: bold;
+}
+#type-select-widget details {
+	position: relative;
+	display: inline-block;
+}
+#type-select-widget details>summary {
+	list-style: none;
+}
+#type-select-widget details>summary>img {
+	width: 1.5rem;
+	vertical-align: bottom;
+}
+#type-select-tooltip {
+	position: absolute;
+	width: max-content;
+	max-width: min(60vw, 75ch);
+	right: 0;
+	top: 100%;
+	z-index: 2;
+	margin: 0.5rem 0 0 0;
+	padding: 0.5rem;
+	font-weight: normal;
+	font-size: 1rem;
+	color: white;
+	background-color: #222222;
+}
+#slideshow {
+	margin: 0;
+	grid-area: slideshow;
+	justify-self: center;
+	align-self: start;
+	display: grid;
+	grid-template: 1fr 1fr 1fr / 1fr 1fr;
+}
+#slideshow>img {
+	max-width: 100%;
+	grid-area: 1 / 1 / -1 / -1;
+}
+#slide-caption {
+	padding: 0.1rem 0.2rem;
+	grid-area: 1 / 1 / span 1 / -1;
+	justify-self: start;
+	align-self: start;
+	font-size: 1rem;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+#slideshow>button {
+	border: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.7rem;
+	grid-row: 2 / span 1;
+	grid-column-end: span 1;
+	align-self: center;
+	background-color: rgba(0, 0, 0, 0.1);
+	font-weight: bold;
+	font-size: 2rem;
+	color: white;
+}
+#prev-slide {
+	padding-left: 0.1rem;
+	padding-right: 0.2rem;
+	grid-column-start: 1;
+	justify-self: start;
+}
+#next-slide {
+	padding-left: 0.2rem;
+	padding-right: 0.1rem;
+	grid-column-start: -2;
+	justify-self: end;
+}
+#slide-buttons {
+	grid-area: 3 / 1 / span 1 / -1;
+	justify-self: center;
+	align-self: end;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-flow: row wrap-reverse;
+	justify-content: center;
+	align-items: flex-start;
+	align-content: flex-start;
+}
+#slide-buttons>li>button {
+	border: 0;
+	padding: 0;
+	background: none;
+	font-size: 4vw;
+}
+.slide-button {
+	cursor: default;
+	display: list-item;
+}
+.slide-button>button {
+	color: rgba(255, 255, 255, 0.5);
+}
+.sb-displayed>button {
+	color: rgba(0, 0, 0, 0.7);
+}
+.sb-hidden {
+	display: none;
+}
+#table-calc-container {
+	grid-area: table-calculator;
+	justify-self: center;
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 1rem;
+}
+#prices-table-container {
+	grid-area: table;
+	justify-self: center;
+	padding: 0.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#prices-table>caption {
+	font-size: 1.1rem;
+	font-weight: bold;
+}
+#prices-table td {
+	font-family: var(--font-family-monospace);
+	text-align: center;
+}
+#prices-table th, #prices-table td {
+	padding: 0.2rem;
+}
+#prices-table, #prices-table th, #prices-table td {
+	border-width: 0.1rem;
+	border-style: solid;
+	border-color: black;
+	border-collapse: collapse;
+}
+#price-calc {
+	grid-area: calculator;
+	justify-self: center;
+	align-self: start;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: stretch;
+	text-align: center;
+	padding: 0.5rem;
+}
+#price-calc>h2 {
+	margin: 0;
+}
+#price-calc>div {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+}
+#price-calc>div>label {
+	margin-right: 0.2rem;
+}
+#check-in-date-picker, #check-out-date-picker {
+	margin-left: auto;
+	font-size: 1rem;
+}
+#price-calc-result {
+	margin: 1rem 0 0 0;
+}
+@media screen and (min-width: 23rem) {
+	#type-select-widget>div {
+		display: inline-block;
+	}
+}
+@media screen and (min-width: 40rem) {
+	main>div {
+		grid-template-areas: "selection selection" "slideshow slideshow" "table calculator";
+	}
+	#table-calc-container {
+		display: contents;
+	}
+}
+@media screen and (min-width: 52rem) {
+	main>div {
+		grid-template-areas: "selection selection" "slideshow table-calculator";
+	}
+	#slide-buttons>li>button {
+		font-size: min(calc(5vw - 1.3rem), 1.5rem);
+	}
+	#table-calc-container {
+		display: flex;
+		flex-flow: column-reverse nowrap;
+	}
+	#price-calc {
+		align-self: stretch;
+	}
+}
+@media (hover: hover) {
+	.slide-button:hover {
+		color: rgba(0, 0, 0, 0.7);
+	}
+}
+@media (pointer: fine) {
+	#slideshow>button {
+		background-color: rgba(0, 0, 0, 0);
+	}
+	#slideshow>button:hover {
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Naturmar Praia Apartaments</title>
+		<link rel="icon" type="image/x-icon" href="/icons/beach.svg">
+		<link rel="stylesheet" type="text/css" href="/style/vars.css">
+		<link rel="stylesheet" type="text/css" href="/style/top-bar.css">
+		<link rel="stylesheet" type="text/css" href="/style/bottom-bar.css">
+		<link rel="stylesheet" type="text/css" href="/apartamentos.css">
+		<script src="/apartamentos.js" defer></script>
+	</head>
+
+	<body>
+		<noscript>Without javascript, the elements of this page will not work.</noscript>
+		<header id="top-bar">
+			<div id="top-bar-content">
+				<div id="logo">
+					<img src="/icons/beach.svg">
+					<h1>Naturmar Praia<br>Apartaments</h1>
+				</div>
+				<a id="lang-switcher" href="/">
+					<img src="/icons/portugal-flag.svg">
+					<p lang="pt-PT">Português</p>
+				</a>
+				<nav id="nav-bar">
+					<a href="/en">HOME</a>
+					<a>APARTMENTS</a>
+					<a href="/en/information">INFORMATION</a>
+					<a href="/en/booking">BOOKING</a>
+				</nav>
+			</div>
+		</header>
+
+		<main>
+			<div>
+				<section id="type-select-widget" class="card">
+					<label id="type-select-label" for="type-select">Accommodation type:</label>
+					<div>
+						<select id="type-select" onchange="selectionChange();" autocomplete="off">
+							<option id="T0">T0 (2 people)</option>
+							<option id="T0S">T0S (2 people)</option>
+							<option id="T0+1">T0+1 (3 people)</option>
+							<option id="T0+2">T0+2 (4 people)</option>
+							<option id="T1">T1 (4 people)</option>
+							<option id="T1S">T1s (4 people)</option>
+							<option id="T1+1">T1+1 (6 people)</option>
+							<option id="T2">T2 (6 people)</option>
+						</select>
+						<details>
+							<summary><img src="/icons/help.svg"></summary>
+							<p id="type-select-tooltip">Living room with two single beds that can be joined, kitchenette, full bathroom and a balcony. Capacity for 2 people.</p>
+						</details>
+					</div>
+				</section>
+				<figure id="slideshow">
+					<!-- <figcaption id="slide-caption">Alojamento Local: 49586</figcaption> -->
+					<img id="slide" src="/pics/4-302/1424.med.jpg" alt="Apartment image.">
+					<button id="prev-slide" type="button" onclick="changeSlide(-2);">&#10094;</button>
+					<button id="next-slide" type="button" onclick="changeSlide(-1);">&#10095;</button>
+					<ol id="slide-buttons">
+						<li class="slide-button sb-displayed"><button type="button" onclick="changeSlide(0);">&#11044;</button></li>
+						<li class="slide-button"><button type="button" onclick="changeSlide(1);">&#11044;</button></li>
+						<li class="slide-button"><button type="button" onclick="changeSlide(2);">&#11044;</button></li>
+						<li class="slide-button"><button type="button" onclick="changeSlide(3);">&#11044;</button></li>
+						<li class="slide-button"><button type="button" onclick="changeSlide(4);">&#11044;</button></li>
+						<li class="slide-button"><button type="button" onclick="changeSlide(5);">&#11044;</button></li>
+						<li class="slide-button"><button type="button" onclick="changeSlide(6);">&#11044;</button></li>
+						<li class="slide-button"><button type="button" onclick="changeSlide(7);">&#11044;</button></li>
+						<li class="slide-button"><button type="button" onclick="changeSlide(8);">&#11044;</button></li>
+						<li class="slide-button"><button type="button" onclick="changeSlide(9);">&#11044;</button></li>
+						<li class="slide-button"><button type="button" onclick="changeSlide(10);">&#11044;</button></li>
+						<li class="slide-button"><button type="button" onclick="changeSlide(11);">&#11044;</button></li>
+						<li class="slide-button"><button type="button" onclick="changeSlide(12);">&#11044;</button></li>
+						<li class="slide-button"><button type="button" onclick="changeSlide(13);">&#11044;</button></li>
+						<li class="slide-button"><button type="button" onclick="changeSlide(14);">&#11044;</button></li>
+						<li class="slide-button"><button type="button" onclick="changeSlide(15);">&#11044;</button></li>
+						<li class="slide-button"><button type="button" onclick="changeSlide(16);">&#11044;</button></li>
+						<li class="slide-button"><button type="button" onclick="changeSlide(17);">&#11044;</button></li>
+						<!--<li class="slide-button sb-hidden" hidden><button type="button" onclick="changeSlide(17);">&#11044;</button></li>-->
+					</ol>
+				</figure>
+				<div id="table-calc-container">
+					<div id="prices-table-container" class="card">
+						<table id="prices-table">
+							<caption>Price list (2023)</caption>
+							<tbody>
+								<tr>
+									<th>Date</th><th>Price per<br>night</th>
+								</tr><tr>
+									<td>Jan 02 – Feb 28</td><td>€35</td>
+								</tr><tr>
+									<td>Mar 01 – Apr 30</td><td>€40</td>
+								</tr><tr>
+									<td>May 01 – May 31</td><td>€50</td>
+								</tr><tr>
+									<td>Jun 01 – Jun 15</td><td>€55</td>
+								</tr><tr>
+									<td>Jun 16 – Jun 30</td><td>€65</td>
+								</tr><tr>
+									<td>Jul 01 – Jul 15</td><td>€75</td>
+								</tr><tr>
+									<td>Jul 16 – Jul 31</td><td>€90</td>
+								</tr><tr>
+									<td>Aug 01 – Aug 25</td><td>€100</td>
+								</tr><tr>
+									<td>Aug 26 – Sep 01</td><td>€90</td>
+								</tr><tr>
+									<td>Sep 02 – Sep 15</td><td>€75</td>
+								</tr><tr>
+									<td>Sep 16 – Sep 30</td><td>€55</td>
+								</tr><tr>
+									<td>Oct 01 – Oct 31</td><td>€40</td>
+								</tr><tr>
+									<td>Nov 01 – Dec 28</td><td>€35</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<section id="price-calc" class="card">
+						<h2>Price calculator:</h2>
+						<div>
+							<label for="check-in-date-picker">Check‑in date</label>
+							<input type="date" id="check-in-date-picker" min="2023-01-02" max="2023-12-28" onchange="calcDateRangePrice();" autocomplete="off">
+						</div>
+						<div>
+							<label for="check-out-date-picker">Check‑out date</label>
+							<input type="date" id="check-out-date-picker" min="2023-01-02" max="2023-12-28" onchange="calcDateRangePrice();" autocomplete="off">
+						</div>
+						<p id="price-calc-result">Price for 0 night(s): €0</p>
+					</section>
+				</div>
+			</div>
+		</main>
+
+    <footer id="bottom-bar">
+			<ul id="bottom-bar-content">
+				<li>
+					<h2>Contacts</h2>
+					<ul id="contacts-list">
+						<li>
+							<img class="contact-icon" src="/icons/alternate-email-white.svg">
+							<p class="contact-text">portugal<wbr>_holidays<wbr>@hotmail<wbr>.com</p>
+						</li>
+						<li>
+							<img class="contact-icon" src="/icons/alternate-email-white.svg">
+							<p class="contact-text">naturmar<wbr>.holidays<wbr>@gmail<wbr>.com</p>
+						</li>
+						<li>
+							<img class="contact-icon" src="/icons/local-phone-white.svg">
+							<p class="contact-text phone-text">+351 289 571 929</p>
+						</li>
+						<li>
+							<img class="contact-icon" src="/icons/smartphone-white.svg">
+							<p class="contact-text phone-text">+351 966 040 459</p>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h2>Address</h2>
+					<dl id="location-list">
+						<dt>Street:</dt>
+						<dd>Beco dos Lôpos</dd><br>
+						<dt>Locality:</dt>
+						<dd>Olhos D'Água</dd><br>
+						<dt>Municipality:</dt>
+						<dd>Albufeira</dd><br>
+						<dt><strong>Postcode</strong>:</dt>
+						<dd>8200‒642 ALBUFEIRA</dd><br><br>
+						<dt><strong>Coordinates</strong>:</dt>
+						<dd><a target="_blank" href="https://goo.gl/maps/JXNwq3ai8Hgc2UHW8">37°05'31.6"N 8°11'28.7"W</a></dd>
+					</dl>
+				</li>
+				<li>
+					<h2>Legal Menu</h2>
+					<a lang="pt-PT" href="/termos-condicoes-arrendamento">Termos e Condições de Arrendamento</a>
+				</li>
+			</ul>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--bars-color);
+}
+main {
+  padding: 1rem;
+  background-color: white;
+  text-align: justify;
+}
+div {
+  margin: auto;
+  max-width: min(75ch, var(--max-layout-width));
+}
+main>div>h2 {
+  margin: 1rem 0;
+  text-align: center;
+}
+main>div p {
+  margin: 1rem 0;
+}
+main>div ol, main>div ul {
+  margin: 0;
+}
+main>div ol {
+  padding-left: 2rem;
+}
+main>div ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
