@@ -1,9 +1,9 @@
 const isEN = document.URL.includes("/en/");
 const peoplePerType = {
-  "T0": 2, "T0+1": 3, "T0+2": 4, "T1": 4, "T1S": 4, "T1+1": 6, "T2": 6
+  "T0": 2, "T0S": 2, "T0+1": 3, "T0+2": 4, "T1": 4, "T1S": 4, "T1+1": 6, "T2": 6
 };
 const maxNumberOfType = {
-  "T0": 1, "T0+1": 2, "T0+2": 1, "T1": 3, "T1S": 1, "T1+1": 2, "T2": 1
+  "T0S": 1, "T0+1": 2, "T1": 3, "T1S": 1, "T2": 1
 };
 const resultTextH = document.getElementById("result-text");
 const formPeopleH = document.getElementById("form-people");
@@ -55,7 +55,7 @@ const formNumberChanged = () => {
 };
 const formTypeChanged = () => {
   const typeCounts = {
-    "T0": 0, "T0+1": 0, "T0+2": 0, "T1": 0, "T1S": 0, "T1+1": 0, "T2": 0
+    "T0": 0, "T0S": 0, "T0+1": 0, "T0+2": 0, "T1": 0, "T1S": 0, "T1+1": 0, "T2": 0
   };
   for (const item of formTypesH.children) {
     if (!item.hidden) {
@@ -109,9 +109,13 @@ const changeFormDate = inDate => {
     formCheckOutH.value = formCheckInH.value;
   } else if (!inDate && formCheckInH.value === "") {
     formCheckInH.value = formCheckOutH.value;
+  } else if(formCheckInH.value > formCheckOutH.value) {
+    if(inDate) {
+      formCheckOutH.value = formCheckInH.value;
+    } else {
+      formCheckInH.value = formCheckOutH.value;
+    }
   }
-  formCheckInH.max = formCheckOutH.value;
-  formCheckOutH.min = formCheckInH.value;
 };
 const resetFormTypes = () => {
   formTypesH.children[0].hidden = formTypesH.children[0].children[0].disabled = false;
@@ -123,7 +127,7 @@ const resetFormTypes = () => {
       option.hidden = option.disabled = false;
     }
   }
-  formTypesH.children[0].children[0].value = "T0";
+  formTypesH.children[0].children[0].value = "T0S";
   formTypesH.children[1].children[0].value = formTypesH.children[2].children[0].value = "T1";
   for (let i = 0; i < formPeopleH.length; i++) {
     formPeopleH[i].disabled = formPeopleH[i].hidden = i > 1;
