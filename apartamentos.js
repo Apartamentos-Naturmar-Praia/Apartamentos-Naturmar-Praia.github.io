@@ -121,10 +121,17 @@ const changeSlide = id => {
     spinner.style.zIndex = -1;
   }*/
 };
-const calcDateRangePrice = () => {
+const calcDateRangePrice = changedPicker => {
   const inDatePicker = document.getElementById("check-in-date-picker");
   const outDatePicker = document.getElementById("check-out-date-picker");
   if(inDatePicker.value !== "" && outDatePicker.value !== "") {
+    if(inDatePicker.value > outDatePicker.value) {
+      if(changedPicker == "in") {
+        outDatePicker.value = inDatePicker.value;
+      } else if(changedPicker == "out") {
+        inDatePicker.value = outDatePicker.value;
+      }
+    }
     const priceCalcResult = document.getElementById("price-calc-result");
     const selectedId = typeSelect.selectedOptions[0].id;
     let inDate = inDatePicker.value;
@@ -150,6 +157,4 @@ const calcDateRangePrice = () => {
   } else if(outDatePicker.value === "") {
     outDatePicker.value = inDatePicker.value;
   }
-  inDatePicker.max = outDatePicker.value;
-  outDatePicker.min = inDatePicker.value;
 };
