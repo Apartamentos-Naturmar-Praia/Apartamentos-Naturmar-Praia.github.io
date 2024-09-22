@@ -50,6 +50,7 @@ const slidesTable = {
   //"T1+1": {id: 55772, slides: ["/pics/4-201/0715.med.jpg", "/pics/4-201/0717.med.jpg", "/pics/4-201/0718.med.jpg", "/pics/4-201/0722.med.jpg", "/pics/4-201/0723.med.jpg", "/pics/4-201/0728.med.jpg", "/pics/4-201/0729.med.jpg", "/pics/4-201/0730.med.jpg", "/pics/4-201/0732.med.jpg", "/pics/4-201/0733.med.jpg", "/pics/4-201/0739.med.jpg", "/pics/4-201/0743.med.jpg", "/pics/4-201/0746.med.jpg", "/pics/4-201/0749.med.jpg", "/pics/4-201/0754.med.jpg", "/pics/4-201/0757.med.jpg", "/pics/4-201/1348.med.jpg"]},
   "T2": {id: 22536, slides: ["/pics/4-106/0669.med.jpg", "/pics/4-106/0675.med.jpg", "/pics/4-106/0678.med.jpg", "/pics/4-106/0682.med.jpg", "/pics/4-106/0683.med.jpg", "/pics/4-106/0686.med.jpg", "/pics/4-106/0687.med.jpg", "/pics/4-106/0688.med.jpg", "/pics/4-106/0690.med.jpg", "/pics/4-106/0693.med.jpg", "/pics/4-106/0695.med.jpg", "/pics/4-106/0697.med.jpg", "/pics/4-106/0699.med.jpg", "/pics/4-106/0702.med.jpg", "/pics/4-106/0703.med.jpg", "/pics/4-106/0704.med.jpg", "/pics/4-106/0705.med.jpg", "/pics/4-106/0708.med.jpg"]}
 };
+const numberPeopleTable = {"T0S": 2, "T0+1": 3, "T1": 4, "T1S": 4, "T2": 6};
 // preload images of the apartment type
 for(const src of slidesTable["T0S"].slides) {
   new Image().src = src;
@@ -61,9 +62,11 @@ const selectionChange = () => {
   const tooltip = document.getElementById("type-select-tooltip");
   const pricesTableElement = document.getElementById("prices-table");
   const slideCaption = document.getElementById("slide-caption");
+  const numberPeoplePicker = document.getElementById("number-people-picker");
   const selectedId = typeSelect.selectedOptions[0].id;
   const prices = pricesTable.prices[selectedId];
   const buttons = slideButtons.children;
+  numberPeoplePicker.max = numberPeopleTable[selectedId];
   // preload images of the apartment type
   for(const src of slidesTable[selectedId].slides) {
     new Image().src = src;
@@ -85,6 +88,7 @@ const selectionChange = () => {
   for(let i = 0; i < prices.length; i++) {
     pricesTableElement.rows[i + 1].cells[1].innerHTML = isEN ? "€" + prices[i] : prices[i] + " €";
   }
+  crampNumberPeoplePicker();
   calcDateRangePrice();
 };
 let slideIndex = 0;
@@ -118,9 +122,25 @@ const changeSlide = id => {
     spinner.style.zIndex = -1;
   }*/
 };
+const numberPeopleChanged = () => {
+  crampNumberPeoplePicker();
+  calcDateRangePrice();
+};
+const crampNumberPeoplePicker = () => {
+  const numberPeoplePicker = document.getElementById("number-people-picker");
+  const num = Math.trunc(numberPeoplePicker.value);
+  if(isNaN(num) || num < numberPeoplePicker.min) {
+    numberPeoplePicker.value = numberPeoplePicker.min;
+  } else if(num > numberPeoplePicker.max) {
+    numberPeoplePicker.value = numberPeoplePicker.max;
+  } else {
+    numberPeoplePicker.value = num;
+  }
+};
 const calcDateRangePrice = changedPicker => {
   const inDatePicker = document.getElementById("check-in-date-picker");
   const outDatePicker = document.getElementById("check-out-date-picker");
+  const numberPeoplePicker = document.getElementById("number-people-picker");
   if(inDatePicker.value !== "" && outDatePicker.value !== "") {
     if(inDatePicker.value > outDatePicker.value) {
       if(changedPicker == "in") {
@@ -130,6 +150,7 @@ const calcDateRangePrice = changedPicker => {
       }
     }
     const priceCalcResult = document.getElementById("price-calc-result");
+    const taxCalcResult = document.getElementById("tax-calc-result");
     const selectedId = typeSelect.selectedOptions[0].id;
     let inDate = inDatePicker.value;
     let outDate = outDatePicker.value;
@@ -149,6 +170,8 @@ const calcDateRangePrice = changedPicker => {
       numberNights++;
     }
     priceCalcResult.innerHTML = isEN ? `Price for ${numberNights} night(s): €${totalPrice}` : `Preço por ${numberNights} noite(s): ${totalPrice} €`;
+    const tax = 2 * numberPeoplePicker.value * Math.min(numberNights, 7);
+    taxCalcResult.innerHTML = isEN ? `Tourist tax: €${tax}` : `Taxa turística: ${tax} €`;
   } else if(inDatePicker.value === "") {
     inDatePicker.value = outDatePicker.value;
   } else if(outDatePicker.value === "") {

@@ -205,8 +205,15 @@ noscript {
 	margin-left: auto;
 	font-size: 1rem;
 }
+#number-people-picker {
+	margin: auto;
+	font-size: 1rem;
+}
 #price-calc-result {
 	margin: 1rem 0 0 0;
+}
+#tax-calc-result {
+	margin: 0;
 }
 @media screen and (min-width: 23rem) {
 	#type-select-widget>div {

@@ -58,11 +58,7 @@
 				<input id="form-phone" class="boxed-text" type="tel" required autocomplete="tel">
 
 				<label for="form-number">No. of apartments</label>
-				<select id="form-number" class="boxed-text" onchange="formNumberChanged();" autocomplete="off">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-				</select>
+				<input id="form-number" class="boxed-text" type="number" value="1" min="1" max="3" onchange="formNumberChanged();" autocomplete="off" required>
 
 				<label for="form-type1">Type(s)</label>
 				<ul id="form-types">
@@ -104,27 +100,11 @@
 					</li>
 				</ul>
 
-				<label for="form-people">No. of people</label>
-				<select id="form-people" class="boxed-text" autocomplete="off">
-					<option>1</option>
-					<option>2</option>
-					<option disabled hidden>3</option>
-					<option disabled hidden>4</option>
-					<option disabled hidden>5</option>
-					<option disabled hidden>6</option>
-					<option disabled hidden>7</option>
-					<option disabled hidden>8</option>
-					<option disabled hidden>9</option>
-					<option disabled hidden>10</option>
-					<option disabled hidden>11</option>
-					<option disabled hidden>12</option>
-					<option disabled hidden>13</option>
-					<option disabled hidden>14</option>
-					<option disabled hidden>15</option>
-					<option disabled hidden>16</option>
-					<option disabled hidden>17</option>
-					<option disabled hidden>18</option>
-				</select>
+				<label for="form-people">No. of people over 12 years old</label>
+				<input id="form-people-over" class="boxed-text" type="number" onchange="formPeopleChanged(true);" value="2" min="1" max="2" autocomplete="off" required>
+
+				<label for="form-people-under">No. of people 12 years old or younger</label>
+				<input id="form-people-under" class="boxed-text" type="number" onchange="formPeopleChanged(false);" value="0" min="0" max="1" autocomplete="off" required>
 
 				<label for="form-check-in">Check-in date</label>
 				<input id="form-check-in" class="boxed-text" type="date" onchange="changeFormDate(true);" required>

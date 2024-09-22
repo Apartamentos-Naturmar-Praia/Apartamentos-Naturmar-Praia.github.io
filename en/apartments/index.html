@@ -128,7 +128,12 @@
 							<label for="check-out-date-picker">Check‑out date</label>
 							<input type="date" id="check-out-date-picker" min="2024-01-02" max="2024-12-28" onchange="calcDateRangePrice('out');" autocomplete="off">
 						</div>
+						<div>
+							<label for="number-people-picker">No. of people over<br>12 years old</label>
+							<input type="number" id="number-people-picker" value="1" min="1" max="2" oninput="numberPeopleChanged();" autocomplete="off">
+						</div>
 						<p id="price-calc-result">Price for 0 night(s): €0</p>
+						<p id="tax-calc-result">Tourist tax: €0</p>
 					</section>
 				</div>
 			</div>

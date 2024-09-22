@@ -6,7 +6,8 @@ const maxNumberOfType = {
   "T0S": 1, "T0+1": 2, "T1": 3, "T1S": 1, "T2": 1
 };
 const resultTextH = document.getElementById("result-text");
-const formPeopleH = document.getElementById("form-people");
+const formPeopleOverH = document.getElementById("form-people-over");
+const formPeopleUnderH = document.getElementById("form-people-under");
 const formTypesH = document.getElementById("form-types");
 const formNumberH = document.getElementById("form-number");
 const formCheckInH = document.getElementById("form-check-in");
@@ -31,8 +32,8 @@ const genMessage = () => {
   }
   message = (message += ";\n").replace(",;", ";");
   message += isEN
-    ? `People: ${formPeopleH.value};\nCheck-in: ${formCheckInH.value};\nCheck-out: ${formCheckOutH.value};\n`
-    : `Pessoas: ${formPeopleH.value};\nEntrada: ${formCheckInH.value};\nSaída: ${formCheckOutH.value};\n`;
+    ? `People > 12: ${formPeopleOverH.value};\nPeople ≤ 12: ${formPeopleUnderH.value};\nCheck-in: ${formCheckInH.value};\nCheck-out: ${formCheckOutH.value};\n`
+    : `Pessoas > 12: ${formPeopleOverH.value};\nPessoas ≤ 12: ${formPeopleUnderH.value};\nEntrada: ${formCheckInH.value};\nSaída: ${formCheckOutH.value};\n`;
   if (formInfoH.value !== "") {
     message += isEN ? `Information:\n${formInfoH.value}` : `Informações:\n${formInfoH.value}`;
   }
@@ -53,6 +54,7 @@ const formNumberChanged = () => {
   }
   formTypeChanged();
 };
+let maxPeople = 2;
 const formTypeChanged = () => {
   const typeCounts = {
     "T0": 0, "T0S": 0, "T0+1": 0, "T0+2": 0, "T1": 0, "T1S": 0, "T1+1": 0, "T2": 0
@@ -87,20 +89,25 @@ const formTypeChanged = () => {
     }
   }
 
-  let maxPeople = 0;
+  maxPeople = 0;
   for (const item of formTypesH.children) {
     if (!item.hidden) {
       maxPeople += peoplePerType[item.children[0].value];
     }
   }
-  for (let i = 0; i < formPeopleH.length; i++) {
-    if (i < maxPeople) {
-      formPeopleH[i].disabled = formPeopleH[i].hidden = false;
+  formPeopleOverH.max = maxPeople;
+  formPeopleUnderH.max = maxPeople - 1;
+  if (+formPeopleOverH.value + +formPeopleUnderH.value > maxPeople) {
+    formPeopleOverH.value = maxPeople;
+    formPeopleUnderH.value = 0;
+  }
+};
+const formPeopleChanged = isOver => {
+  if (+formPeopleOverH.value + +formPeopleUnderH.value > maxPeople) {
+    if (isOver) {
+      formPeopleUnderH.value = maxPeople - formPeopleOverH.value;
     } else {
-      formPeopleH[i].disabled = formPeopleH[i].hidden = true;
-      if (formPeopleH[i].selected) {
-        formPeopleH[0].selected = true;
-      }
+      formPeopleOverH.value = maxPeople - formPeopleUnderH.value;
     }
   }
 };
@@ -129,10 +136,10 @@ const resetFormTypes = () => {
   }
   formTypesH.children[0].children[0].value = "T0S";
   formTypesH.children[1].children[0].value = formTypesH.children[2].children[0].value = "T1";
-  for (let i = 0; i < formPeopleH.length; i++) {
-    formPeopleH[i].disabled = formPeopleH[i].hidden = i > 1;
+  for (let i = 0; i < formPeopleOverH.length; i++) {
+    formPeopleOverH[i].disabled = formPeopleOverH[i].hidden = i > 1;
   }
-  formPeopleH.value = "1";
+  formPeopleOverH.value = "1";
 };
 const copyMessage = () => {
   const note = document.getElementById("result-copy-button-note");
