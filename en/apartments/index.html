@@ -130,7 +130,14 @@
 						</div>
 						<div>
 							<label for="number-people-picker">No. of people over<br>12 years old</label>
-							<input type="number" id="number-people-picker" value="1" min="1" max="2" oninput="numberPeopleChanged();" autocomplete="off">
+							<select id="number-people-picker" onchange="calcDateRangePrice();" autocomplete="off">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3" disabled hidden>3</option>
+								<option value="4" disabled hidden>4</option>
+								<option value="5" disabled hidden>5</option>
+								<option value="6" disabled hidden>6</option>
+							</select>
 						</div>
 						<p id="price-calc-result">Price for 0 night(s): €0</p>
 						<p id="tax-calc-result">Tourist tax: €0</p>

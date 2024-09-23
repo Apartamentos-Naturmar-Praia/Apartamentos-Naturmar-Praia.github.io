@@ -66,7 +66,7 @@ const selectionChange = () => {
   const selectedId = typeSelect.selectedOptions[0].id;
   const prices = pricesTable.prices[selectedId];
   const buttons = slideButtons.children;
-  numberPeoplePicker.max = numberPeopleTable[selectedId];
+  const maxPeople = numberPeopleTable[selectedId];
   // preload images of the apartment type
   for(const src of slidesTable[selectedId].slides) {
     new Image().src = src;
@@ -88,7 +88,12 @@ const selectionChange = () => {
   for(let i = 0; i < prices.length; i++) {
     pricesTableElement.rows[i + 1].cells[1].innerHTML = isEN ? "€" + prices[i] : prices[i] + " €";
   }
-  crampNumberPeoplePicker();
+  if(numberPeoplePicker.selectedIndex >= maxPeople) {
+    numberPeoplePicker.selectedIndex = maxPeople - 1;
+  }
+  for(let i = 0; i < numberPeoplePicker.children.length; i++) {
+    numberPeoplePicker.children[i].disabled = numberPeoplePicker.children[i].hidden = i >= maxPeople;
+  }
   calcDateRangePrice();
 };
 let slideIndex = 0;
@@ -121,21 +126,6 @@ const changeSlide = id => {
     slide.src = slides[slideIndex];
     spinner.style.zIndex = -1;
   }*/
-};
-const numberPeopleChanged = () => {
-  crampNumberPeoplePicker();
-  calcDateRangePrice();
-};
-const crampNumberPeoplePicker = () => {
-  const numberPeoplePicker = document.getElementById("number-people-picker");
-  const num = Math.trunc(numberPeoplePicker.value);
-  if(isNaN(num) || num < numberPeoplePicker.min) {
-    numberPeoplePicker.value = numberPeoplePicker.min;
-  } else if(num > numberPeoplePicker.max) {
-    numberPeoplePicker.value = numberPeoplePicker.max;
-  } else {
-    numberPeoplePicker.value = num;
-  }
 };
 const calcDateRangePrice = changedPicker => {
   const inDatePicker = document.getElementById("check-in-date-picker");
