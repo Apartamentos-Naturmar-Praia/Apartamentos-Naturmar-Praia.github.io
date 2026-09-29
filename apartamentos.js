@@ -47,30 +47,31 @@ const slidesTable = {
   "T2": {id: 22536, slides: ["/pics/4-106/0669.med.jpg", "/pics/4-106/0675.med.jpg", "/pics/4-106/0678.med.jpg", "/pics/4-106/0682.med.jpg", "/pics/4-106/0683.med.jpg", "/pics/4-106/0686.med.jpg", "/pics/4-106/0687.med.jpg", "/pics/4-106/0688.med.jpg", "/pics/4-106/0690.med.jpg", "/pics/4-106/0693.med.jpg", "/pics/4-106/0695.med.jpg", "/pics/4-106/0697.med.jpg", "/pics/4-106/0699.med.jpg", "/pics/4-106/0702.med.jpg", "/pics/4-106/0703.med.jpg", "/pics/4-106/0704.med.jpg", "/pics/4-106/0705.med.jpg", "/pics/4-106/0708.med.jpg"]}
 };
 const numberPeopleTable = {"T0S": 2, "T0+1": 3, "T1": 4, "T1S": 4, "T2": 6};
-// preload images of the apartment type
-for(const src of slidesTable["T0S"].slides) {
-  new Image().src = src;
-}
+const tryPreloadImageThenNextImage = function(type, index) {
+  if(index >= slidesTable[type].slides.length) return;
+  const img = new Image();
+  img.onload = event => tryPreloadImageThenNextImage(type, index + 1);
+  img.onerror = event => tryPreloadImageThenNextImage(type, index + 1);
+  img.src = slidesTable[type].slides[index];
+};
+tryPreloadImageThenNextImage("T0S", 1);
 
 const typeSelect = document.getElementById("type-select");
 const slideButtons = document.getElementById("slide-buttons");
-const selectionChange = () => {
+const selectionChange = function() {
   const tooltip = document.getElementById("type-select-tooltip");
   const pricesTableElement = document.getElementById("prices-table");
   const slideCaption = document.getElementById("slide-caption");
   const numberPeoplePicker = document.getElementById("number-people-picker");
-  const selectedId = typeSelect.selectedOptions[0].id;
-  const prices = pricesTable.prices[selectedId];
+  const selectedType = typeSelect.selectedOptions[0].id;
+  const prices = pricesTable.prices[selectedType];
   const buttons = slideButtons.children;
-  const maxPeople = numberPeopleTable[selectedId];
-  // preload images of the apartment type
-  for(const src of slidesTable[selectedId].slides) {
-    new Image().src = src;
-  }
-  tooltip.innerHTML = descriptions[selectedId];
+  const maxPeople = numberPeopleTable[selectedType];
+  tryPreloadImageThenNextImage(selectedType, 0);
+  tooltip.innerHTML = descriptions[selectedType];
   changeSlide(0);
   for(let i = 1; i < buttons.length; i++) {
-    if(i < slidesTable[selectedId].slides.length) {
+    if(i < slidesTable[selectedType].slides.length) {
       buttons[i].classList.remove("sb-hidden");
       buttons[i].hidden = false;
     } else {
@@ -79,7 +80,7 @@ const selectionChange = () => {
     }
   }
   if(!isEN) {
-    slideCaption.innerHTML = "Alojamento Local: " + slidesTable[selectedId].id;
+    slideCaption.innerHTML = "Alojamento Local: " + slidesTable[selectedType].id;
   }
   for(let i = 0; i < prices.length; i++) {
     pricesTableElement.rows[i + 1].cells[1].innerHTML = isEN ? "€" + prices[i] : prices[i] + " €";
@@ -93,11 +94,11 @@ const selectionChange = () => {
   calcDateRangePrice();
 };
 let slideIndex = 0;
-const changeSlide = id => {
+const changeSlide = function(id) {
   const slide = document.getElementById("slide");
   //const spinner = document.getElementById("spinner");
-  const selectedId = typeSelect.selectedOptions[0].id;
-  const slides = slidesTable[selectedId].slides;
+  const selectedType = typeSelect.selectedOptions[0].id;
+  const slides = slidesTable[selectedType].slides;
   const prevSlideIndex = slideIndex;
   if(id === -1) {
     slideIndex = (slideIndex + 1) % slides.length;
@@ -123,7 +124,7 @@ const changeSlide = id => {
     spinner.style.zIndex = -1;
   }*/
 };
-const calcDateRangePrice = changedPicker => {
+const calcDateRangePrice = function(changedPicker) {
   const inDatePicker = document.getElementById("check-in-date-picker");
   const outDatePicker = document.getElementById("check-out-date-picker");
   const numberPeoplePicker = document.getElementById("number-people-picker");
@@ -137,10 +138,10 @@ const calcDateRangePrice = changedPicker => {
     }
     const priceCalcResult = document.getElementById("price-calc-result");
     const taxCalcResult = document.getElementById("tax-calc-result");
-    const selectedId = typeSelect.selectedOptions[0].id;
+    const selectedType = typeSelect.selectedOptions[0].id;
     let inDate = inDatePicker.value;
     let outDate = outDatePicker.value;
-    const prices = pricesTable.prices[selectedId];
+    const prices = pricesTable.prices[selectedType];
     const dates = pricesTable.dates;
     let totalPrice = 0, numberNights = 0;
     for(let date = inDate, d = inDatePicker.valueAsDate;
